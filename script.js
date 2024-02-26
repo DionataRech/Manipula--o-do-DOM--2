@@ -1,69 +1,57 @@
-const classeCard = document.querySelectorAll(".card");
-for (let i = 0; i < classeCard.length; i++) {
-  classeCard[i].style.background = "orange";
-}
+const cards = document.querySelectorAll("#container .card");
+const titleCard = document.querySelectorAll(".card .titulo-card");
+const description = document.querySelectorAll(".card .descricao-card");
+const btn = document.querySelectorAll(".card button");
 
-const titulo = document.getElementsByClassName("titulo-card");
-for (let i = 0; i < titulo.length; i++) {
-  titulo[i].style.color = "#2b385b";
-}
+cards.forEach((card) => {
+  card.style.backgroundColor = "#e16e0e";
+});
 
-for (let i = 0; i < titulo.length; i++) {
-  titulo[i].innerText = "Meu Card";
-}
+titleCard.forEach((title) => {
+  title.style.color = "#2b385b";
+  title.style.margin = "20px 0 30px 0";
+  title.innerText = "Meu card";
+});
 
-const descricao = document.getElementsByClassName("descricao-card");
-for (let i = 0; i < descricao.length; i++) {
-  descricao[i].style.color = "white";
-  descricao[i].style.fontSize = "14px";
-  descricao[i].style.marginTop = "40px";
-  descricao[i].style.marginBottom = "40px";
-}
+description.forEach((p) => {
+  p.style.color = "#fff";
+  p.style.fontSize = "0.9em";
+  p.innerText = "Descrição modificada pelo javascript";
+});
 
-for (let i = 0; i < descricao.length; i++) {
-  descricao[i].innerText = "Descrição modificada pelo JavaScript";
-}
+btn.forEach((btn) => {
+  if (
+    btn.classList.contains("botao-editar") ||
+    btn.classList.contains("botao-apagar")
+  ) {
+    btn.style.color = "#fff";
+    btn.style.padding = "8px";
+    btn.style.border = "none";
+    btn.style.borderRadius = "7px";
+    btn.style.margin = "30px 0";
+  }
 
-const botaoEditar = document.getElementsByClassName("botao-editar");
-for (let i = 0; i < botaoEditar.length; i++) {
-  botaoEditar[i].style.color = "white";
-  botaoEditar[i].style.background = "green";
-  botaoEditar[i].style.border = "0px";
-  botaoEditar[i].style.width = "50px";
-  botaoEditar[i].style.height = "30px";
-  botaoEditar[i].style.borderRadius = "9px";
-}
+  if (btn.classList.contains("botao-editar")) {
+    btn.style.backgroundColor = "#008000";
+  }
 
-const botaoApagar = document.getElementsByClassName("botao-apagar");
-for (let i = 0; i < botaoEditar.length; i++) {
-  botaoApagar[i].style.color = "white";
-  botaoApagar[i].style.background = "red";
-  botaoApagar[i].style.border = "0px";
-  botaoApagar[i].style.width = "50px";
-  botaoApagar[i].style.height = "30px";
-  botaoApagar[i].style.borderRadius = "9px";
-}
+  if (btn.classList.contains("botao-apagar")) {
+    btn.style.backgroundColor = "#ff0000";
+  }
+});
 
 const editarCard = () => {
   alert("Clicou em Editar!");
 };
 
-let selecionarBotaoAdd = document.querySelectorAll(".botao-editar");
+const apagarCard = (btn) => {
+  let verificar = confirm("Tem certeza que deseja excluir esse card?");
 
-for (let i = 0; i < selecionarBotaoAdd.length; i++) {
-  selecionarBotaoAdd[i].setAttribute("onclick", "editarCard()");
-}
-
-const apagarCard = () => {
-  if (confirm("Deseja excluir este card?")) {
-    alert("Confirmado");
+  if (verificar) {
+    alert("Confirmado!");
+    let deleteCard = btn.parentNode;
+    deleteCard.remove();
   } else {
-    alert("Cancelado");
+    alert("Cancelou!");
   }
 };
-
-let selecionarBotaoApagar = document.querySelectorAll(".botao-apagar");
-
-for (let i = 0; i < selecionarBotaoApagar.length; i++) {
-  selecionarBotaoApagar[i].setAttribute("onclick", "apagarCard()");
-}
